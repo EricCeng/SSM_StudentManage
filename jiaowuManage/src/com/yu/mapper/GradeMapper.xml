@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yu.mapper.GradeMapper">
+  <resultMap id="BaseResultMap" type="com.yu.pojo.Grade">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+    <result column="tid" jdbcType="INTEGER" property="tid" />
+    <result column="kgrade" jdbcType="DOUBLE" property="kgrade" />
+    <result column="pgrade" jdbcType="DOUBLE" property="pgrade" />
+    <result column="zgrade" jdbcType="DOUBLE" property="zgrade" />
+  </resultMap>
+  
+  <insert id="insertGrade" parameterType="grade">
+     insert into grade (sid, cid, 
+      tid, kgrade, pgrade,
+      zgrade)
+    values (#{sid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
+      #{tid,jdbcType=INTEGER}, #{kgrade,jdbcType=DOUBLE}, #{pgrade,jdbcType=DOUBLE},
+      #{zgrade,jdbcType=DOUBLE})
+  </insert>
+  
+  <select id="selectById" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(*) from grade where tid=#{tid,jdbcType=INTEGER}
+  </select>
+</mapper>

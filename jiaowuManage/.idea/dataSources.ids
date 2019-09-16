@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - @localhost" uuid="a59d27d7-76b3-400b-bf4e-af58651a7d38">
+    <database-info product="MySQL" version="8.0.16" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.47 ( Revision: fe1903b1ecb4a96a917f7ed3190d80c049b1de29 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="ssm"/>
+    <table name="t_course" schema="" catalog="ssm" type="TABLE">
+      <column name="c_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="c_name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="c_credit" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="c_id"/>
+      <foreign-key name="t_course_ibfk_1" columns="c_id" ref-table="t_stucourse" ref-schema="" ref-catalog="ssm" ref-columns="c2_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="t_score" schema="" catalog="ssm" type="TABLE">
+      <column name="s_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="s_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="c_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="c_score" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="t_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="s_id"/>
+    </table>
+    <table name="t_stucourse" schema="" catalog="ssm" type="TABLE">
+      <column name="c2_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="c2_id"/>
+      <exported-key name="t_course_ibfk_1" table="t_course" schema="" catalog="ssm" columns="c_id"/>
+      <exported-key name="t_student_ibfk_2" table="t_student" schema="" catalog="ssm" columns="s_id"/>
+      <exported-key name="t_teacher_ibfk_1" table="t_teacher" schema="" catalog="ssm" columns="t_id"/>
+      <index name="c2_teacher_2" unique="false" columns="c2_id"/>
+    </table>
+    <table name="t_student" schema="" catalog="ssm" type="TABLE">
+      <column name="s_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="s_gender" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="s_name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="s_age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="s_score" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="s_id"/>
+      <foreign-key name="t_student_ibfk_2" columns="s_id" ref-table="t_stucourse" ref-schema="" ref-catalog="ssm" ref-columns="c2_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="t_teacher" schema="" catalog="ssm" type="TABLE">
+      <column name="t_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="t_name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="t_gender" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="t_id"/>
+      <foreign-key name="t_teacher_ibfk_1" columns="t_id" ref-table="t_stucourse" ref-schema="" ref-catalog="ssm" ref-columns="c2_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="id" unique="false" columns="t_id"/>
+      <index name="t_name" unique="false" columns="t_name"/>
+    </table>
+  </data-source>
+</component>
